@@ -1,0 +1,77 @@
+include modules/mixins.pug
+
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+    link(rel="stylesheet", href="css/style.min.css")
+  body
+    div(style='display: none')
+      include ../build/img/sprite.svg
+    header.header
+      .container
+        a(href="#").header__logo-link
+          svg(width="44" height="16.98").header__logo
+            use(xlink:href="#logo")
+        nav.header__nav
+          ul.header__list
+            li.header__item
+              a.header__link.header__link--about(href="#") О путешествии
+            li.header__item
+              a.header__link.header__link--prices(href="#") Цены
+            li.header__item
+              a.header__link.header__link--tel(href="tel:+749978468446") +7 (499) -784-684-46
+          button(type="button").header__button
+    main
+      section.desc
+        .container
+          .desc__container
+            .desc__header-wrapper
+              h1.desc__header Путешествие по Европе
+            p.desc__text В этом туре вы откроете для себя Европу в новом свете. Вас ждет: море, горы, а также потрясающая красота природы.
+            a.desc__button(href="#") Смотреть тур
+      section.places
+        .container
+          h2.places__header Места посещения
+          p.places__text Вы можете выбрать полный тур или частичный, с посещением первых 3 мест
+          ul.places__list
+            +card
+      section.tours
+        .container
+          h2.visually-hidden Туры
+          .tours__wrapper
+            ul.tours__buttons
+              +radio
+            ul.tours__countries
+              +tour
+      section.prices
+        .container
+          h2.prices__header Цены
+          p.prices__text Специально для Вас  мы разработали 2 пакета цен с разными условиями, отталкиваясь от Ваших потребностей и возможностей. Выберите для себя лучший вариант отпуска и отдохните на все 100%!
+          p.prices__contact Свяжитесь с нами
+          a.prices__tel(href="tel:+749978468446") +7 (499) -784-684-46
+          .prices__wrapper
+            .prices__card.prices__card--red
+              h3.prices__tariff.prices__tariff--red Комплексный
+              p.prices__price.prices__price--red $1999
+              p.prices__desc Ознакомьтесь с перечнем того, что входит в данный пакет
+              ul.prices__list
+                li.prices__item.prices__item--top Разработанный маршрут с гидом группы
+                li.prices__item Перелет, трансфер и проживание в отелях
+                li.prices__item Завтраки, ужины в отелях и ланчи на природе
+                li.prices__item Экскурсии по удивительно красивым местам Европы
+              a.prices__buy.prices__buy--red(href="#") Купить тур сейчас
+            .prices__card
+              h3.prices__tariff Экономный
+              p.prices__price $1399
+              p.prices__desc Ознакомьтесь с перечнем того, что входит в данный пакет 
+              ul.prices__list
+                li.prices__item Разработанный маршрут с гидом группы
+                li.prices__item Перелет и трансфер
+                li.prices__item Проживание в хостелах при отелях
+                li.prices__item Только завтраки в отелях
+                li.prices__item Экскурсии по удивительно красивым местам Европы
+              a.prices__buy(href="#") Купить тур сейчас
+    script(src="js/script.js")

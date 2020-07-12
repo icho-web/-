@@ -1,0 +1,69 @@
+$red: #FE7865;
+$grey-text: rgba(44, 46, 63, 0.7);
+$grey-button: rgba(44, 46, 63, 0.3);
+$dark: #2C2E3F;
+$black: #141517;
+
+$tablet: 'min-width: 768px';
+$desktop: 'min-width: 1024px';
+$cards-breakpoint: 'min-width: 1755px';
+$layout: 'min-width: 1920px';
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat";
+}
+
+.visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+
+  font-size: 0;
+
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5.1%;
+}
+
+@media ($desktop) {
+  .container {
+    padding-left: 19.52%;
+    padding-right: 19.5%;
+  }
+}
+
+@media ($layout) {
+  // .container {
+  //   padding-left: 5.12%;
+  //   padding-right: 5.1%;
+  // }
+}
