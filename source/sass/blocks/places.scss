@@ -25,9 +25,14 @@
 }
 
 .places__list {
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 0;
+
+  list-style: none;
 }
 
 .places__item {
@@ -36,6 +41,18 @@
   width: 288px;
   height: 425px;
   margin-bottom: 35px;
+
+  &:hover {
+    .places__item-wrapper {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    .places__item-wrapper {
+      opacity: 1;
+    }
+  }
 }
 
 .places__country {
@@ -59,10 +76,54 @@
   color: $dark;
 }
 
+.places__item-wrapper {
+  position: absolute;
+
+  display: flex;
+  padding-top: 152px;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: $grey-link;
+
+  opacity: 0;
+  transition: 0.5s ease;
+
+  a {
+    padding-top: 30px;
+    width: 266px;
+    height: 77px;
+    display: block;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+}
+
+.places__item-link {
+  text-decoration: none;
+  transition: 0.3s ease;
+  &:hover {
+    border: 1px solid $red;
+    color: $red;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
 @media ($tablet) {
   .places {
     .container {
-      padding-top: 55px;
+      padding-top: 56px;
     }
   }
 
@@ -74,7 +135,7 @@
 
   .places__text {
     padding: 0 26%;
-    margin-bottom: 39px;
+    margin-bottom: 38px;
   }
 
   .places__list {
@@ -158,6 +219,15 @@
     img {
       width: 350px;
       height: 430px;
+    }
+  }
+}
+
+@media ($layout) {
+  .places {
+    .container {
+      padding-left: 375px;
+      padding-right: 376px;
     }
   }
 }

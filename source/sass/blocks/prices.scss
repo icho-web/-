@@ -1,4 +1,7 @@
 .prices {
+  position: relative;
+  z-index: 1;
+  
   .container {
     padding-top: 26px;
     padding-left: 4.4%;
@@ -43,21 +46,15 @@
   text-decoration-line: underline;
 
   color: $red;
-}
+  transition: 0.3s ease;
 
-.prices__card {
-  padding: 0 7%;
-  padding-top: 29px;
-  margin-bottom: 30px;
+  &:hover {
+    color: $red;
+  }
 
-  border: 1px solid $grey-button;
-  border-radius: 6px;
-}
-
-.prices__card--red {
-  padding: 0 6%;
-  padding-top: 29px;
-  border: 3px solid $red;
+  &:active {
+    opacity: 0.5;
+  }
 }
 
 .prices__tariff {
@@ -68,14 +65,9 @@
   font-size: 24px;
   line-height: 34px;
   text-align: center;
-
   letter-spacing: -1.27273px;
-}
 
-.prices__tariff--red {
-  color: $red;
-
-  letter-spacing: normal;
+  transition: 0.5s;
 }
 
 .prices__price {
@@ -86,12 +78,8 @@
   font-size: 25px;
   line-height: 34px;
   text-align: center;
-}
 
-.prices__price--red {
-  margin-left: 0;
-
-  color: $red;
+  transition: 0.5s;
 }
 
 .prices__desc {
@@ -106,11 +94,19 @@
 }
 
 .prices__list {
-  padding-top: 22px;
+  padding-top: 21px;
+  margin-top: 0;
   margin-bottom: 28px;
+  padding-left: 0;
+
+  list-style: none;
+
+  transition: 0.5s ease;
+  border-top: 1px solid $grey-button;
 }
 
 .prices__item {
+  position: relative;
   margin: 0 auto;
   margin-bottom: 10px;
   padding-left: 30px;
@@ -127,16 +123,36 @@
   &:last-child {
     margin-bottom: 0;
   }
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    left: 0;
+    top: 9px;
+
+    width: 14px;
+    height: 12px;
+
+    transition: 0.5s ease;
+    background-image: url('../img/tick-red.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 .prices__buy {
-  display: block;
-  width: calc(116.5%);
-  margin-left: -8.3%;
-  margin-bottom: -1px;
-  padding-top: 21px;
-  padding-bottom: 16px;
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translate(-50%);
 
+  display: block;
+  width: 290px;
+  padding-top: 21px;
+  padding-bottom: 17px;
+
+  text-decoration: none;
   text-align: center;
   font-weight: 500;
   font-size: 10px;
@@ -146,17 +162,349 @@
 
   color: white;
   background-color: $red;
+
+  &:hover {
+    background-color: $orange;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 }
 
-.prices__buy--red {
-  width: 114.4%;
-  margin-left: -7.2%;
+.prices__card {
+  position: relative;
+
+  padding-bottom: 49px;
+  padding-top: 31px;
+  padding-left: 7%;
+  padding-right: 7%;
+  margin-bottom: 29px;
+
+  box-sizing: border-box;
+  border: 1px solid $grey-button;
+  border-radius: 6px;
+
+  &:hover {
+    padding-bottom: 47px;
+    padding-top: 29px;
+    padding-left: calc(7% - 2px);
+    padding-right: calc(7% - 2px);
+    border: 3px solid $red;
+    border-radius: 6px 6px 0 0;
+
+    .prices__list {
+      transition: 0.5s ease;
+      border-top: 1px solid $red;
+    }
+    
+    .prices__item {
+      &::before {
+        transition: 0.5s ease;
+        left: 4px;
+        background-image: url('../img/tick.png');
+      }
+    }
+
+    .prices__tariff {
+      transition: 0.5s;
+      font-weight: 600;
+      font-size: 24px;
+      letter-spacing: normal;
+    }
+
+    .prices__price {
+      padding-left: 10px;
+
+      transition: 0.5s;
+    }
+
+    .prices__tariff-wrapper {
+      color: $red;
+    }
+
+    .prices__buy {
+      bottom: -3px;
+    }
+  }
 }
 
 @media ($tablet) {
+  .prices {
+    margin-bottom: 96px;
+    
+    .container {
+      padding-top: 54px;
+      padding-left: 4.4%;
+      padding-right: 4.5%;
+    }
+  }
+
   .prices__header {
+    margin-bottom: 21px;
+
     font-weight: 600;
     font-size: 30px;
     line-height: 150%;
+  }
+
+  .prices__text {
+    margin-bottom: 32px;
+  }
+
+  .prices__tel {
+    margin-bottom: 28px;
+  }
+
+  .prices__item {
+    &--top {
+      margin-bottom: 5px;
+    }
+  }
+
+  .prices__wrapper {
+    padding: 0 5.2%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .prices__buy {
+    width: 288px;
+    padding-left: 3px;
+  }
+
+  .prices__card {
+    position: relative;
+    width: 46%;
+    padding: 30px 3% 50px;
+    margin-right: 20px;
+    margin-top: 2px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      padding-top: 28px;
+      padding-bottom: 48px;
+      padding-left: calc(3% - 2px);
+      padding-right: calc(3% - 2px);
+      border: 3px solid $red;
+      border-radius: 6px 6px 0 0;
+  
+      .prices__tariff {
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: normal;
+      }
+  
+      .prices__price {
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+@media ($desktop) {
+  .prices {
+    margin-bottom: 108px;
+    
+    .container {
+      display: flex;
+      align-items: center;
+      padding-left: 19.5%;
+      padding-right: 19.3%;
+    }
+  }
+
+  .prices__text-wrapper {
+    margin-top: 19px;
+    order: 1;
+    width: 293.77px;
+  }
+
+  .prices__wrapper {
+    padding: 0;
+    width: 65.6%;
+    margin-right: auto;
+  }
+
+  .prices__card {
+    width: 370px;
+    margin-right: 5px;
+
+    &:hover {
+      .prices__item {
+        &::before {
+          left: 6px;
+        }
+      }
+    }
+  }
+
+  .prices__header {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 17px;
+
+    font-weight: 600;
+    font-size: 55px;
+    line-height: 90px;
+    text-align: left;
+
+    &::after {
+      content: '';
+      position: absolute;
+
+      left: 0;
+      bottom: -16px;
+
+      width: 175px;
+      height: 3px;
+
+      background-color: $red;
+    }
+  }
+
+  .prices__contact {
+    margin-bottom: 13px;
+    padding-left: 10px;
+
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 34px;
+  }
+
+  .prices__tel {
+    position: relative;
+    padding-left: 7px;
+
+    font-size: 20px;
+    line-height: 32px;
+    text-decoration: none;
+
+    color: black;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+
+      width: 30px;
+      height: 30px;
+
+      background-image: url('../img/phone.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .prices__text {
+    text-align: left;
+    padding-top: 30px;
+    margin-bottom: 60px;
+  }
+
+  .prices__tariff-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .prices__tariff {
+    margin-bottom: 28px;
+
+    margin-right: auto;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 38px;
+    letter-spacing: -1.27273px;
+  }
+
+  .prices__price {
+    margin: 0;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 34px;
+  }
+
+  .prices__desc {
+    margin-bottom: 26px;
+    padding-right: 22px;
+    padding-left: 1px;
+
+    text-align: left;
+  }
+
+  .prices__list {
+    padding-top: 31px;
+    margin-bottom: 0;
+  }
+
+  .prices__item {
+    margin-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 31px;
+
+    font-size: 16px;
+    line-height: 32px;
+
+    &--top {
+      margin-bottom: 7px;
+    }
+  }
+
+  .prices__buy {
+    left: 50%;
+    bottom: 29px;
+    transform: translate(-50%);
+
+    padding-top: 31px;
+    width: 310px;
+    height: 75px;
+
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 2px;
+  }
+
+  .prices__card {
+    padding: 37px 28px 133px;
+    
+    &:hover {
+      padding-top: 35px;
+      padding-left: 26px;
+      padding-right: 26px;
+      padding-bottom: 131px;
+      border: 3px solid $red;
+      border-bottom: 3px solid $red;;
+      border-radius: 6px;
+  
+      .prices__tariff {
+        letter-spacing: normal;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 38px;
+      }
+  
+      .prices__price {
+        padding-left: 10px;
+      }
+
+      .prices__buy {
+        bottom: 27px;
+      }
+    }
+  }
+}
+
+@media ($layout) {
+  .prices {
+    .container {
+      padding-left: 375px;
+      padding-right: 371px;
+    }
   }
 }

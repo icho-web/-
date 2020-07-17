@@ -5,25 +5,31 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
+    title Путешествие по Европе
     link(rel="stylesheet", href="css/style.min.css")
-  body
-    div(style='display: none')
+    link(rel="preload" href="fonts/Montserrat-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous")
+    link(rel="preload" href="fonts/Montserrat-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous")
+    link(rel="preload" href="fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous")
+    link(rel="preload" href="fonts/Montserrat-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous")
+  body.body
+    div(style="display: none")
       include ../build/img/sprite.svg
     header.header
       .container
         a(href="#").header__logo-link
+          span.visually-hidden Перейти на главную
           svg(width="44" height="16.98").header__logo
             use(xlink:href="#logo")
         nav.header__nav
           ul.header__list
             li.header__item
-              a.header__link.header__link--about(href="#") О путешествии
+              a.header__link.header__link--about(href="#places") О путешествии
             li.header__item
-              a.header__link.header__link--prices(href="#") Цены
-            li.header__item
+              a.header__link.header__link--prices(href="#prices") Цены
+            li.header__item.header__item--tel
               a.header__link.header__link--tel(href="tel:+749978468446") +7 (499) -784-684-46
           button(type="button").header__button
+            span.visually-hidden Открыть меню
     main
       section.desc
         .container
@@ -31,8 +37,8 @@ html(lang="en")
             .desc__header-wrapper
               h1.desc__header Путешествие по Европе
             p.desc__text В этом туре вы откроете для себя Европу в новом свете. Вас ждет: море, горы, а также потрясающая красота природы.
-            a.desc__button(href="#") Смотреть тур
-      section.places
+            a.desc__button(href="#tours__wrapper") Смотреть тур
+      section.places#places
         .container
           h2.places__header Места посещения
           p.places__text Вы можете выбрать полный тур или частичный, с посещением первых 3 мест
@@ -41,32 +47,35 @@ html(lang="en")
       section.tours
         .container
           h2.visually-hidden Туры
-          .tours__wrapper
+          .tours__wrapper#tours__wrapper
             ul.tours__buttons
               +radio
             ul.tours__countries
               +tour
-      section.prices
+      section.prices#prices
         .container
-          h2.prices__header Цены
-          p.prices__text Специально для Вас  мы разработали 2 пакета цен с разными условиями, отталкиваясь от Ваших потребностей и возможностей. Выберите для себя лучший вариант отпуска и отдохните на все 100%!
-          p.prices__contact Свяжитесь с нами
-          a.prices__tel(href="tel:+749978468446") +7 (499) -784-684-46
+          .prices__text-wrapper
+            h2.prices__header Цены
+            p.prices__text Специально для Вас &nbsp;мы разработали 2 пакета цен с разными условиями, отталкиваясь от Ваших потребностей и возможностей. Выберите для себя лучший вариант отпуска и отдохните на все 100%! 
+            p.prices__contact Свяжитесь с нами
+            a.prices__tel(href="tel:+749978468446") +7 (499) -784-684-46
           .prices__wrapper
-            .prices__card.prices__card--red
-              h3.prices__tariff.prices__tariff--red Комплексный
-              p.prices__price.prices__price--red $1999
+            .prices__card
+              .prices__tariff-wrapper
+                h3.prices__tariff Комплексный
+                p.prices__price $1999
               p.prices__desc Ознакомьтесь с перечнем того, что входит в данный пакет
               ul.prices__list
                 li.prices__item.prices__item--top Разработанный маршрут с гидом группы
                 li.prices__item Перелет, трансфер и проживание в отелях
                 li.prices__item Завтраки, ужины в отелях и ланчи на природе
                 li.prices__item Экскурсии по удивительно красивым местам Европы
-              a.prices__buy.prices__buy--red(href="#") Купить тур сейчас
+              a.prices__buy(href="#") Купить тур сейчас
             .prices__card
-              h3.prices__tariff Экономный
-              p.prices__price $1399
-              p.prices__desc Ознакомьтесь с перечнем того, что входит в данный пакет 
+              .prices__tariff-wrapper
+                h3.prices__tariff Экономный
+                p.prices__price $1399
+              p.prices__desc Ознакомьтесь с перечнем того, что входит в данный пакет
               ul.prices__list
                 li.prices__item Разработанный маршрут с гидом группы
                 li.prices__item Перелет и трансфер
@@ -74,4 +83,101 @@ html(lang="en")
                 li.prices__item Только завтраки в отелях
                 li.prices__item Экскурсии по удивительно красивым местам Европы
               a.prices__buy(href="#") Купить тур сейчас
+      section.questions
+        .container
+          .questions__wrapper
+            h2.questions__header У Вас остались вопросы?
+            p.questions__desc Оставьте свой номер или e-mail и мы свяжемся с Вами
+            form.questions__form(novalidate)
+              .questions__form-wrapper
+                .questions__input-wrapper
+                  p.questions__error.questions__error--tel Данные не верны
+                  label#star(for="tel")
+                    svg(width="6" height="7")
+                      use(xlink:href="#form-mask")
+                  input(type="text" id="tel" placeholder="+7  Введите 10 цифр номера")
+                .questions__input-wrapper
+                  p.questions__error.questions__error--mail Данные не верны
+                  label.visually-hidden(for="mail") Почта
+                  input(type="email" id="mail" placeholder="E-mail")
+              button(type="submit").questions__submit Отправить
+      section.buy
+        .container
+          .buy__wrapper
+            button.buy__close(type="button")
+              span.visually-hidden Закрыть
+            h2.buy__header Купить тур
+            form.buy__form(novalidate)
+              .buy__form-wrapper
+                .buy__input-wrapper
+                  p.buy__error.buy__error--tel Данные не верны
+                  label.buy__label(for="tel")
+                    svg(width="6" height="7")
+                      use(xlink:href="#form-mask")
+                  input(type="text" id="popup-tel" placeholder="+7  Введите 10 цифр номера")
+                .buy__input-wrapper
+                  p.buy__error.buy__error--mail Данные не верны
+                  label.visually-hidden(for="popup-mail") Почта
+                  input(type="email" id="popup-mail" placeholder="E-mail")
+              button(type="submit").buy__submit Отправить
+      section.success
+        .success__wrapper
+          h2.visually-hidden Успех
+          p.success__text Форма успешно отправлена, спасибо! :)  
+          button.success__button(type="button")
+            span.visually-hidden Закрыть
+    footer.footer
+      h2.visually-hidden Путешествия
+      .container
+        .footer__wrapper
+          .footer__next-trip
+            h3.footer__header.footer__header--next-trip Следующие путешествия
+            ul.footer__next-trip-list
+              li.footer__next-trip-item.footer__next-trip-item--first
+                ul.footer__places
+                  li.footer__place
+                    a(href="#") Марсель
+                  li.footer__place
+                    a(href="#") Ним
+                  li.footer__place
+                    a(href="#") Монпелье
+                  li.footer__place
+                    a(href="#") Барселона
+                  li.footer__place
+                    a(href="#") Пальма
+              li.footer__next-trip-item.footer__next-trip-item--second
+                ul.footer__places
+                  li.footer__place
+                    a(href="#") Сардиния
+                  li.footer__place
+                    a(href="#") Палермо
+                  li.footer__place
+                    a(href="#") Катания
+                  li.footer__place
+                    a(href="#") Неаполь
+                  li.footer__place
+                    a(href="#") Рим            
+              li.footer__next-trip-item
+                ul.footer__places
+                  li.footer__place
+                    a(href="#") Корс
+                  li.footer__place
+                    a(href="#") Ницца
+                  li.footer__place
+                    a(href="#") Монако
+                  li.footer__place
+                    a(href="#") Динь-ле-Бен
+                  li.footer__place
+                    a(href="#") Гренобль
+          .footer__contacts
+            h3.footer__header.footer__header--contacts Наши контакты
+            a.footer__contact.footer__contact--mail(href="mailto:puteshestviemechta@gmail.ru") 
+              span.footer__mail Почта
+              span.footer__email puteshestviemechta@gmail.ru
+            a.footer__contact.footer__contact--tel(href="tel:+749978468446") +7 (499) -784-684-46
+        .footer__corporate
+          h3.footer__header.footer__header--corporate Корпоративные путешествия
+          p.footer__corporate-text Также вы можете заказать индивидуальное путешествие под вашу компанию. Подобные туры очень сближают компанию, помогают поддерживать корпоративный дух, а также являются оличным времяпрепровождением
+    script(src="https://unpkg.com/imask")
     script(src="js/script.js")
+    

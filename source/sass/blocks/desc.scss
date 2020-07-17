@@ -5,11 +5,20 @@
 }
 
 .desc__header-wrapper {
-  height: 235px;
-  padding: 62px 47px 89px 55px;
+  min-height: 235px;
+  padding: 63px 49px 61px 55px;
   margin-bottom: 20px;
 
-  background-image: url('../img/background.png');
+  background-image: url('../img/background-mobile.png');
+  background-image: url('../img/background-mobile.webp');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: #4a7996;
+
+  @media (min-resolution: $retina-dppx) {
+    background-image: url('../img/background-mobile@2x.png');
+    background-image: url('../img/background-mobile@2x.webp');
+  }
 }
 
 .desc__header {
@@ -32,8 +41,11 @@
 }
 
 .desc__button {
+  position: relative;
+
   display: block;
-  margin: 0 5%;
+  margin: 0 auto;
+  width: 288px;
   padding: 21px 40px 17px 40px;
   
   font-weight: 500;
@@ -41,33 +53,67 @@
   line-height: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-
+  text-decoration: none;
+  
   color: white;
   background-color: $red;
+
+  &:hover {
+    background-color: $orange;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    width: 14px;
+    height: 14px;
+
+    right: 40px;
+    top: 19px;
+
+    background-image: url('../img/arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 @media ($tablet) {
   .desc {
-    background-image: url('../img/background.png');
+    background-image: url('../img/background-tablet.png');
+    background-image: url('../img/background-tablet.webp');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: #4a7996;
 
     .container {
       padding-bottom: 83px;
+    }
+
+    @media (min-resolution: $retina-dppx) {
+      background-image: url('../img/background-tablet@2x.png');
+      background-image: url('../img/background-tablet@2x.webp');
     }
   }
 
   .desc__header {
     margin: 0;
     font-size: 30px;
-    letter-spacing: 0.2px;
+    letter-spacing: 0;
   }
 
   .desc__header-wrapper {
-    height: auto;
+    min-height: auto;
     padding: 0;
-    padding-top: 60px;
+    padding-top: 61px;
     margin-bottom: 0;
 
     background-image: none;
+    background-color: transparent;
   }
 
   .desc__text {
@@ -85,9 +131,17 @@
 
 @media ($desktop) {
   .desc {
+    background-image: url('../img/background.png');
+    background-image: url('../img/background.webp');
+
     .container {
       padding-top: 151px;
       padding-bottom: 296px;
+    }
+
+    @media (min-resolution: $retina-dppx) {
+      background-image: url('../img/background@2x.png');
+      background-image: url('../img/background@2x.webp');
     }
   }
 
@@ -109,6 +163,7 @@
 
   .desc__text {
     padding: 0;
+    padding-left: 2px;
     margin-bottom: 33px;
 
     text-align: left;
@@ -124,6 +179,10 @@
     font-size: 12px;
     line-height: 15px;
     letter-spacing: 2px;
+
+    &::after {
+      top: 31px;
+    }
   }
 
   .desc__header-wrapper {

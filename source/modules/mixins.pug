@@ -3,9 +3,15 @@ include data.pug
 mixin card
   each item in card
     li.places__item(class= item.modifier)
+      .places__item-wrapper
+        a.places__item-link(href="#tours__wrapper") Cмотреть подробнее
       h3.places__country= item.country
       .places__image
-        img(src= item.url alt= item.alt)
+        picture
+          source(media="(min-width: 1755px)" srcset="img/" + item.url + "-desktop.webp 1x, img/" + item.url + "-desktop@2x.webp 2x" type="image/webp")
+          source(media="(min-width: 320px)" srcset="img/" + item.url + ".webp 1x, img/" + item.url + "@2x.webp 2x" type="image/webp")
+          source(media="(min-width: 1755px)" srcset="img/" + item.url + "-desktop.png 1x, img/" + item.url + "-desktop@2x.png 2x")
+          img(src="img/" + item.url +".png" srcset="img/" + item.url + "@2x.png 2x" width="288" height="425" alt= item.alt)
 
 mixin radio
   each item in radio
@@ -21,13 +27,15 @@ mixin tour
         p.tours__text= item.comment
         a.tours__buy(href="#") Купить тур сейчас
       picture
-        source(media="(min-width: 1024px)" srcset="img/feedback-" + item.url + "-desktop.webp" type="image/webp")
-        source(media="(min-width: 768px)" srcset="img/feedback-" + item.url + "-tablet.webp" type="image/webp")
-        source(media="(min-width: 320px)" srcset="img/feedback-" + item.url + ".webp" type="image/webp")
-        source(media="(min-width: 1024px)" srcset="img/feedback-" + item.url + "-desktop.png")
-        source(media="(min-width: 768px)" srcset="img/feedback-" + item.url + "-tablet.png")
-        img.tours__img(src="img/feedback-" + item.url + ".png", alt= item.place)
+        source(media="(min-width: 1024px)" srcset="img/feedback-" + item.url + "-desktop.webp 1x, img/feedback-" + item.url + "-desktop@2x.webp 2x" type="image/webp")
+        source(media="(min-width: 768px)" srcset="img/feedback-" + item.url + "-tablet.webp 1x, img/feedback-" + item.url + "-tablet@2x.webp 2x" type="image/webp")
+        source(media="(min-width: 320px)" srcset="img/feedback-" + item.url + ".webp 1x, img/feedback-" + item.url + "@2x.webp 2x" type="image/webp")
+        source(media="(min-width: 1024px)" srcset="img/feedback-" + item.url + "-desktop.png 1x, img/feedback-" + item.url + "-desktop@2x.png 2x")
+        source(media="(min-width: 768px)" srcset="img/feedback-" + item.url + "-tablet.png 1x, img/feedback-" + item.url + "-tablet@2x.png 2x")
+        img.tours__img(src="img/feedback-" + item.url + ".png", srcset="img/feedback-" + item.url + "@2x.png 2x" width="320" height="415" alt= item.place)
       .tours__comment
         p.tours__feedback-header Отзывы
         p.tours__feedback= item.feedback
-        p.tours__name= item.name
+        .tours__account
+          img.tours__account-img(src="img/" + item.account + ".png", srcset="img/" + item.account + "@2x.png 2x" alt= item.name width="38" height="38")
+          p.tours__name= item.name

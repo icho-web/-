@@ -1,13 +1,19 @@
 $red: #FE7865;
+$orange: #F17D4B;
+$grey: #FBF8F8;
 $grey-text: rgba(44, 46, 63, 0.7);
 $grey-button: rgba(44, 46, 63, 0.3);
+$grey-link: rgba(20, 21, 23, 0.5);
 $dark: #2C2E3F;
 $black: #141517;
+$black-popup: #48494D;
 
 $tablet: 'min-width: 768px';
 $desktop: 'min-width: 1024px';
 $cards-breakpoint: 'min-width: 1755px';
 $layout: 'min-width: 1920px';
+
+$retina-dppx: 1.5dppx;
 
 *,
 *::before,
@@ -22,7 +28,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Montserrat";
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
 .visually-hidden {
@@ -36,16 +42,6 @@ body {
 
   clip: rect(0 0 0 0);
   overflow: hidden;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
 }
 
 .container {
@@ -62,8 +58,7 @@ a {
 }
 
 @media ($layout) {
-  // .container {
-  //   padding-left: 5.12%;
-  //   padding-right: 5.1%;
-  // }
+  .container {
+    width: 1920px;
+  }
 }
